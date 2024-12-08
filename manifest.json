@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "我的 Chrome 扩展",
+  "version": "1.0",
+  "description": "这是一个基础的 Chrome 扩展",
+  "permissions": [],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+} 
