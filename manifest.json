@@ -1,20 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "我的 Chrome 扩展",
+  "name": "XPATH 解析器",
   "version": "1.0",
-  "description": "这是一个基础的 Chrome 扩展",
-  "permissions": [],
+  "description": "一个简单的 XPATH 表达式解析工具",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+    "default_title": "XPATH 解析器"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      }
     }
   },
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  }
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["floating.css"]
+    }
+  ]
 } 

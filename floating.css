@@ -1,0 +1,75 @@
+#xpath-analyzer-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 999999;
+    border-radius: 0 0 8px 8px;
+    display: none; /* 初始隐藏 */
+}
+
+#xpath-analyzer-container.visible {
+    display: block;
+}
+
+.xpath-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.xpath-content {
+    display: flex;
+    padding: 15px;
+    gap: 20px;
+}
+
+.xpath-input-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.xpath-result-section {
+    flex: 1;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+}
+
+#xpath-input {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+}
+
+#parse-btn {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.close-button:hover {
+    color: #333;
+} 

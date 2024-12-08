@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/popup.css">
+    <meta charset="UTF-8">
+    <title>XPATH 解析器</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div id="app">
-    <h1>我的 Chrome 扩展</h1>
-  </div>
-  <script src="js/popup.js"></script>
+    <div class="header">
+        <h3>XPATH 解析器</h3>
+        <button id="close-btn" class="close-button">×</button>
+    </div>
+    <div class="container">
+        <!-- 左侧 XPATH 输入区域 -->
+        <div class="xpath-input-section">
+            <label for="xpath-input">XPATH 表达式</label>
+            <textarea id="xpath-input" placeholder="请输入 XPATH 表达式..."></textarea>
+            <button id="parse-btn">解析</button>
+        </div>
+        
+        <!-- 右侧结果显示区域 -->
+        <div class="result-section">
+            <h3>解析结果</h3>
+            <div id="result-container"></div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html> 
