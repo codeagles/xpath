@@ -1,0 +1,160 @@
+:root {
+    --dark-gray: #333333;
+    --text-white: #ffffff;
+    --border-color: #444444;
+    --content-padding: 15px;
+}
+
+#xpath-analyzer-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    width: 800px;
+    background: var(--dark-gray);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 999999;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: none;
+    color: var(--text-white);
+}
+
+#xpath-analyzer-container.visible {
+    display: block;
+}
+
+.xpath-header {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    align-items: center;
+    padding: 10px var(--content-padding);
+    background-color: var(--dark-gray);
+    border-bottom: 1px solid var(--border-color);
+    cursor: move;
+    user-select: none;
+    color: var(--text-white);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.xpath-content {
+    display: flex;
+    padding: var(--content-padding);
+    background-color: var(--dark-gray);
+    min-height: 150px;
+    gap: 15px;
+}
+
+.xpath-input-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#xpath-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: none;
+    cursor: text;
+    background-color: #444444;
+    color: var(--text-white);
+    box-sizing: border-box;
+}
+
+#xpath-input::placeholder {
+    color: #888888;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--dark-gray);
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
+}
+
+.button-group button:hover {
+    background-color: #444444;
+}
+
+.xpath-result-section {
+    flex: 1.2;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+#result-container {
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    user-select: text;
+    cursor: text;
+    contenteditable: false;
+}
+
+/* 自定义滚动条样式 */
+#xpath-input::-webkit-scrollbar,
+#result-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#xpath-input::-webkit-scrollbar-track,
+#result-container::-webkit-scrollbar-track {
+    background: #444444;
+}
+
+#xpath-input::-webkit-scrollbar-thumb,
+#result-container::-webkit-scrollbar-thumb {
+    background: #666666;
+    border-radius: 4px;
+}
+
+/* 结果项样式 */
+.result-item {
+    padding: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-text {
+    color: var(--text-white);
+    margin-bottom: 4px;
+}
+
+.result-xpath {
+    color: #888888;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+/* 添加结果区域的标题样式 */
+.result-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--text-white);
+    background-color: #444444;
+    border-radius: 4px 4px 0 0;
+} 
