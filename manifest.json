@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "XPATH 解析器",
+  "name": "XPath Parser",
   "version": "1.0",
-  "description": "一个简单的 XPATH 表达式解析工具",
+  "description": "A simple XPath expression parsing tool",
   "permissions": [
     "activeTab",
     "scripting"
@@ -11,7 +11,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "XPATH 解析器"
+    "default_title": "XPATH Parser"
   },
   "commands": {
     "_execute_action": {
