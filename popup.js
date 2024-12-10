@@ -66,7 +66,7 @@ function displayResult(results) {
         const li = document.createElement('li');
         li.innerHTML = `
             <div class="result-item">
-                <div class="result-text">${item.text || '空文本'}</div>
+                <div class="result-text">${item.text || ''}</div>
                 ${item.xpath ? `<div class="result-xpath">${item.xpath}</div>` : ''}
             </div>
         `;

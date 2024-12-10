@@ -107,6 +107,8 @@ function createFloatingWindow() {
         clearBtn.addEventListener('click', () => {
             xpathInput.value = '';
             document.querySelector('#result-container').innerHTML = '';
+            const resultHeader = document.querySelector('.result-header');
+            resultHeader.textContent = 'Result (0 rows)';
         });
     }
 
