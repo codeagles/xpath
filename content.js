@@ -10,10 +10,10 @@ function createFloatingWindow() {
         </div>
         <div class="xpath-content">
             <div class="xpath-input-section">
-                <textarea id="xpath-input" placeholder="Please input XPATH expression..."></textarea>
+                <textarea id="xpath-input" placeholder="请输入XPATH表达式..."></textarea>
                 <div class="button-group">
-                    <button id="clear-btn">Clear</button>
-                    <button id="parse-btn">Parse</button>
+                    <button id="clear-btn">清空</button>
+                    <button id="parse-btn">解析</button>
                 </div>
             </div>
             <div class="xpath-result-section">

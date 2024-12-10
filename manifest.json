@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "XPath Parser",
   "version": "1.0",
-  "description": "A simple XPath expression parsing tool",
+  "description": "一款简约的XPATH解析器",
   "permissions": [
     "activeTab",
     "scripting"
@@ -33,5 +33,10 @@
       "js": ["content.js"],
       "css": ["floating.css"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "img/xlogo.png",
+    "48": "img/xlogo.png",
+    "128": "img/xlogo.png"
+  }
 } 
