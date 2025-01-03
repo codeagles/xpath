@@ -17,7 +17,11 @@ function createFloatingWindow() {
                 </div>
             </div>
             <div class="xpath-result-section">
-                <div class="result-header">Result (0 rows)</div>
+                <div class="result-header">
+                    <span>Result (0 rows)</span>
+                    <button class="copy-button">复制结果</button>
+                    <span class="copy-success">复制成功!</span>
+                </div>
                 <div id="result-container"></div>
             </div>
         </div>
@@ -107,8 +111,10 @@ function createFloatingWindow() {
         clearBtn.addEventListener('click', () => {
             xpathInput.value = '';
             document.querySelector('#result-container').innerHTML = '';
-            const resultHeader = document.querySelector('.result-header');
-            resultHeader.textContent = 'Result (0 rows)';
+            const resultCount = document.querySelector('.result-header span:first-child');
+            if (resultCount) {
+                resultCount.textContent = 'Result (0 rows)';
+            }
         });
     }
 
@@ -117,6 +123,33 @@ function createFloatingWindow() {
             const xpath = xpathInput.value;
             if (xpath.trim()) {
                 evaluateXPath(xpath, document.querySelector('#result-container'));
+            }
+        });
+    }
+
+    // 添加复制按钮事件处理
+    const copyBtn = container.querySelector('.copy-button');
+    const copySuccess = container.querySelector('.copy-success');
+    
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const resultText = Array.from(
+                document.querySelectorAll('#result-container p')
+            )
+            .map(p => p.textContent)
+            .join('\n');
+            
+            if (resultText) {
+                navigator.clipboard.writeText(resultText)
+                    .then(() => {
+                        copySuccess.style.display = 'inline';
+                        setTimeout(() => {
+                            copySuccess.style.display = 'none';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('复制失败:', err);
+                    });
             }
         });
     }
@@ -151,8 +184,10 @@ function displayResult(result, container) {
     
     // 更新结果数量
     const rowCount = result.snapshotLength;
-    const resultHeader = document.querySelector('.result-header');
-    resultHeader.textContent = `Result (${rowCount} rows)`;
+    const resultCount = document.querySelector('.result-header span:first-child');
+    if (resultCount) {
+        resultCount.textContent = `Result (${rowCount} rows)`;
+    }
     
     if (rowCount === 0) {
         container.innerHTML = '<p>未找到匹配结果</p>';
