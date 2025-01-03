@@ -186,14 +186,28 @@ function getFullXPath(node) {
 }
 
 // 添加消息监听器
+let isInitialized = false;
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'toggleXPathAnalyzer') {
-        let container = document.getElementById('xpath-analyzer-container');
-        if (!container) {
-            container = createFloatingWindow();
+        // 确保只初始化一次
+        if (!isInitialized) {
+            createFloatingWindow();
+            isInitialized = true;
         }
-        container.classList.toggle('visible');
-        sendResponse({ success: true });
+        
+        // 获取容器
+        const container = document.getElementById('xpath-analyzer-container');
+        if (container) {
+            // 使用requestAnimationFrame确保DOM更新
+            requestAnimationFrame(() => {
+                container.classList.toggle('visible');
+                sendResponse({ success: true });
+            });
+        } else {
+            sendResponse({ success: false });
+        }
+        return true;
     }
-    return true;
+    return false;
 });

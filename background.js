@@ -3,24 +3,40 @@ let windowId = null;
 
 // 监听插件图标点击事件
 chrome.action.onClicked.addListener(async (tab) => {
-    // 首先注入 content script
     try {
-        await chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            files: ['content.js']
-        });
+        // 并行注入脚本和样式
+        await Promise.all([
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                files: ['content.js']
+            }),
+            chrome.scripting.insertCSS({
+                target: { tabId: tab.id },
+                files: ['floating.css']
+            })
+        ]);
         
-        await chrome.scripting.insertCSS({
-            target: { tabId: tab.id },
-            files: ['floating.css']
-        });
+        // 确保注入完成后再发送消息
+        await new Promise(resolve => setTimeout(resolve, 100));
         
-        // 然后发送消息
-        chrome.tabs.sendMessage(tab.id, {
+        // 发送消息并等待响应
+        const response = await chrome.tabs.sendMessage(tab.id, {
             action: 'toggleXPathAnalyzer'
         });
+        
+        if (!response?.success) {
+            throw new Error('Failed to toggle XPath analyzer');
+        }
     } catch (error) {
         console.error('Error:', error);
+        // 如果失败，重新尝试一次
+        try {
+            await chrome.tabs.sendMessage(tab.id, {
+                action: 'toggleXPathAnalyzer'
+            });
+        } catch (retryError) {
+            console.error('Retry failed:', retryError);
+        }
     }
 });
 
@@ -29,4 +45,4 @@ chrome.windows.onRemoved.addListener((removedWindowId) => {
     if (removedWindowId === windowId) {
         windowId = null;
     }
-}); 
+});
