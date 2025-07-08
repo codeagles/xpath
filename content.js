@@ -129,27 +129,28 @@ function createFloatingWindow() {
     // 添加复制结果按钮事件 - 添加定时器ID跟踪
     let copyTimeoutId = null;
     
+    // 添加复制结果按钮事件 - 移除定时器变量
     function handleCopy() {
         const resultContainer = document.querySelector('#result-container');
         const resultText = Array.from(resultContainer.querySelectorAll('p'))
             .map(p => p.textContent)
-            .join('\n');
-        
-        // 清除任何现有的定时器
-        if (copyTimeoutId) {
-            clearTimeout(copyTimeoutId);
-            copyTimeoutId = null;
-        }
-        
+            .join('');
+    
         navigator.clipboard.writeText(resultText).then(() => {
-            const originalText = copyBtn.textContent;
-            copyBtn.textContent = 'Copied!';
+            // 移除任何现有提示
+            const existingMsg = document.querySelector('.copy-success');
+            if (existingMsg) existingMsg.remove();
             
-            // 存储定时器ID以便后续清除
-            copyTimeoutId = setTimeout(() => {
-                copyBtn.textContent = originalText;
-                copyTimeoutId = null;
-            }, 2000);
+            // 创建成功提示元素
+            const successMsg = document.createElement('span');
+            successMsg.className = 'copy-success';
+            successMsg.textContent = 'Copied!';
+            
+            // 添加到按钮旁边
+            copyBtn.parentElement.appendChild(successMsg);
+            
+            // 3秒后自动移除
+            setTimeout(() => successMsg.remove(), 3000);
         }).catch(err => {
             console.error('Copy failed: ', err);
             alert('Copy failed. Please copy manually.');
