@@ -143,7 +143,7 @@ function createFloatingWindow() {
         
         navigator.clipboard.writeText(resultText).then(() => {
             const originalText = copyBtn.textContent;
-            copyBtn.textContent = '已复制!';
+            copyBtn.textContent = 'Copied!';
             
             // 存储定时器ID以便后续清除
             copyTimeoutId = setTimeout(() => {
@@ -151,8 +151,8 @@ function createFloatingWindow() {
                 copyTimeoutId = null;
             }, 2000);
         }).catch(err => {
-            console.error('复制失败: ', err);
-            alert('复制失败，请手动复制');
+            console.error('Copy failed: ', err);
+            alert('Copy failed. Please copy manually.');
         });
     }
     
