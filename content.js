@@ -5,7 +5,7 @@ function createFloatingWindow() {
     
     container.innerHTML = `
         <div class="xpath-header">
-            <h4>XPATH Parser</h4>
+            <h4>XPATH Parser V1.1</h4>
             <button class="close-button">×</button>
         </div>
         <div class="xpath-content">
